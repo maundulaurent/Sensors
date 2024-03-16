@@ -1,0 +1,31 @@
+.circular-gauge {
+    width: 100px;
+    height: 100px;
+}
+
+.gauge {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.gauge circle {
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+
+.gauge-labels {
+    display: flex;
+    justify-content: space-between;
+}
+
+.gauge-labels span {
+    font-size: 4px;
+    color: #333;
+}
+
+/* /* Add your custom CSS styles here */
+
+.bg-dark {
+    background-color: grey;
+  }

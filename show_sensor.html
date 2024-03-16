@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensors</title>
+    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-dark">
+    <!-- <nav class="flex-items-center bg-teal-800 px-4 py-6">
+        <div class="text-center">
+            <a href="/" class="text-dark fs-2 fw-bold">Sensors Africa</a>
+        </div>
+    </nav> -->
+    
+    <!-- <div class="d-flex">
+        <div class="bg-dark px-4 py-6">
+            <div class="card bg-light d-flex" style="width: 250px; height: 320px;">
+                <div class="card-body">
+                    <h5 class="card-title"style="color: teal;">Sensor 61</h5>
+                    <p class="card-text text-dark">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis omnis aperiam praesentium delectus ipsam veniam quae hic totam animi dignissimos?</p>
+                    <div class="d-flex">
+                        <div>
+                            <p >Temparature</p>
+                            <svg class="circular-gauge" viewBox="0 0 100 100">                            
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="#ddd" stroke-width="6"></circle>
+                                <circle id="progressCircle1" cx="50" cy="50" r="45" fill="none" stroke="#007bff" stroke-width="6" stroke-dasharray="0 283"></circle>
+                                <text x="50" y="50" text-anchor="middle" dy="7" font-size="16" fill="#007bff">0%</text>
+                            </svg>
+                        </div>
+                        <div>
+                            <p>Humidity</p>
+                            <svg class="circular-gauge" viewBox="0 0 100 100">                            
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="#ddd" stroke-width="6"></circle>
+                                <circle id="progressCircle1" cx="50" cy="50" r="45" fill="none" stroke="#007bff" stroke-width="6" stroke-dasharray="0 283"></circle>
+                                <text x="50" y="50" text-anchor="middle" dy="7" font-size="16" fill="#007bff">0%</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="bg-dark px-4 py-6">
+            <div class="card bg-light d-flex" style="width: 250px; height: 320px;">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: teal;">Sensor 61</h5>
+                    <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis omnis aperiam praesentium delectus ipsam veniam quae hic totam animi dignissimos?</p>
+                    <div class="half-gauge">
+                        <svg class="circular-gauge" viewBox="0 0 100 50">
+                            <!-- Background arc -->
+                            <path d="M 10,25 A 40,40 0 1 1 90,25" fill="none" stroke="#ddd" stroke-width="6"></path>
+                            <!-- Progress arc -->
+                            <path id="progressCircle1" d="M 10,25 A 40,40 0 1 1 90,25" fill="none" stroke="#007bff" stroke-width="6"></path>
+                            <!-- Pointer -->
+                            <circle id="pointer" cx="50" cy="25" r="2" fill="#007bff"></circle>
+                            <!-- Marking for 0% -->
+                            <text x="50" y="45" text-anchor="middle" font-size="10" fill="#777">0%</text>
+                            <!-- Marking for 25% -->
+                            <text x="75" y="25" text-anchor="middle" font-size="10" fill="#777">25%</text>
+                            <!-- Marking for 50% -->
+                            <text x="50" y="5" text-anchor="middle" font-size="10" fill="#777">50%</text>
+                            <!-- Marking for 75% -->
+                            <text x="25" y="25" text-anchor="middle" font-size="10" fill="#777">75%</text>
+                            <!-- Marking for 100% -->
+                            <text x="50" y="45" text-anchor="middle" font-size="10" fill="#777">100%</text>
+                        </svg>
+                    </div>
+                    <input type="number" id="gaugeValue" placeholder="Enter Value" min="0" max="100" step="1">
+                    <button onclick="updateGauge()">Update Gauge</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-dark px-4 py-6">
+            <div class="card bg-light d-flex" style="width: 250px; height: 320px;">
+              <div class="card-body">
+                <h5 class="card-title" style="color: teal;">Sensor 61</h5>
+                <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis omnis aperiam praesentium delectus ipsam veniam quae hic totam animi dignissimos?</p>
+                <svg class="circular-gauge" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="45" fill="none" stroke="#ddd" stroke-width="6"></circle>
+                  <circle id="progressCircle1" cx="50" cy="50" r="45" fill="none" stroke="#007bff" stroke-width="6" stroke-dasharray="0 283"></circle>
+                  <text x="50" y="56" text-anchor="middle" font-size="10" fill="#007bff">0%</text>
+                  <circle id="pointer" cx="50" cy="25" r="2" fill="#007bff"></circle>
+          
+                  <defs>
+                    <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="5" orient="auto">
+                      <path d="M0 0 L10 5 L0 10 Z" fill="#000" />
+                    </marker>
+                  </defs>
+                  <g class="markings">
+                    <?php for ($i = 0; $i <= 100; $i += 25) : ?>
+                      <line 
+                        x1="50" 
+                        y1="<?= 100 - $i ?>"  x2="<?php if ($i === 0) echo '52'; else echo '50'; ?>"  y2="50" 
+                        stroke="black" 
+                        stroke-width="2"
+                        marker-end="url(#arrow)"  />
+                      <text x="50" y="<?= 102 - $i ?>" text-anchor="middle" font-size="8" fill="black"><?= $i ?>%</text>
+                    <?php endfor; ?>
+                  </g>
+                  
+                  <text x="50" y="7" font-size="8" text-anchor="middle" fill="transparent">50%</text>
+                  <text x="80" y="28" font-size="8" text-anchor="middle" fill="transparent">75%</text>
+                  <text x="95" y="50" font-size="8" text-anchor="middle" fill="transparent">100%</text>
+                  <text x="20" y="28" font-size="8" text-anchor="middle" fill="transparent">25%</text>
+                  <text x="10" y="50" font-size="8" text-anchor="middle" fill="transparent">0%</text>
+                </svg>
+                <input type="range" id="gaugeValue" min="0" max="100" value="0" step="1" oninput="updateGauge(this.value)" />
+              </div>
+            </div>
+          </div>
+        
+        
+        
+
+        <!-- <div class="bg-dark px-4 py-6">
+            <div class="card bg-light d-flex" style="width: 250px; height: 320px;">
+                <div class="card-body">
+                    <h5 class="card-title"style="color: teal;">Sensor 61</h5>
+                    <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis omnis aperiam praesentium delectus ipsam veniam quae hic totam animi dignissimos?</p>
+                    <div class="d-flex">
+                        <div>
+                            <p >Temparature</p>
+                            <svg class="circular-gauge" viewBox="0 0 100 100">                            
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="#ddd" stroke-width="6"></circle>
+                                <circle id="progressCircle1" cx="50" cy="50" r="45" fill="none" stroke="#007bff" stroke-width="6" stroke-dasharray="0 283"></circle>
+                                <text x="50" y="50" text-anchor="middle" dy="7" font-size="16" fill="#007bff">0%</text>
+                            </svg>
+                        </div>
+                        <div>
+                            <p>Humidity</p>
+                            <svg class="circular-gauge" viewBox="0 0 100 100">                            
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="#ddd" stroke-width="6"></circle>
+                                <circle id="progressCircle1" cx="50" cy="50" r="45" fill="none" stroke="#007bff" stroke-width="6" stroke-dasharray="0 283"></circle>
+                                <text x="50" y="50" text-anchor="middle" dy="7" font-size="16" fill="#007bff">0%</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+        <div class="bg-dark px-4 py-6">
+            <div class="card bg-light d-flex" style="width: 250px; height: 320px;">
+                <div class="card-body">
+                    <h5 class="card-title"style="color: teal;">Sensor 61</h5>
+                    <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis omnis aperiam praesentium delectus ipsam veniam quae hic totam animi dignissimos?</p>
+                        <hr>
+                    <div class="d-flex">                    
+                        <div>
+                            <p >Temparature</p>
+                            <svg class="circular-gauge" viewBox="0 0 100 100">                            
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="#ddd" stroke-width="6"></circle>
+                                <circle id="progressCircle1" cx="50" cy="50" r="45" fill="none" stroke="#007bff" stroke-width="6" stroke-dasharray="0 283"></circle>
+                                <text x="50" y="50" text-anchor="middle" dy="7" font-size="16" fill="#007bff">0%</text>
+                            </svg>
+                        </div>
+                        <div>
+                            <p>Humidity</p>
+                            <svg class="circular-gauge" viewBox="0 0 100 100">                            
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="#ddd" stroke-width="6"></circle>
+                                <circle id="progressCircle1" cx="50" cy="50" r="45" fill="none" stroke="#007bff" stroke-width="6" stroke-dasharray="0 283"></circle>
+                                <text x="50" y="50" text-anchor="middle" dy="7" font-size="16" fill="#007bff">0%</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- <div class="bg-dark px-4 py-6">
+        <div class="card bg-light d-flex" style="width: 250px; height: 320px;">
+            <div class="card-body">
+                <h5 class="card-title" style="color: teal;">Sensor 61</h5>
+                <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis omnis aperiam praesentium delectus ipsam veniam quae hic totam animi dignissimos?</p>
+                <div class="half-gauge">
+                    <svg class="circular-gauge" viewBox="0 0 100 50">
+                        <path d="M 10,25 A 40,40 0 1,1 90,25" fill="none" stroke="#ddd" stroke-width="6"></path>
+                        <path id="progressCircle1" d="M 10,25 A 40,40 0 1,1 90,25" fill="none" stroke="#007bff" stroke-width="6" stroke-dasharray="0 126"></path>
+                        <text x="50" y="25" text-anchor="middle" dy="7" font-size="16" fill="#007bff">0%</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+  
+    <div class="bg-dark px-4 py-6">
+        <div class="card bg-light d-flex" style="width: 250px; height: 320px;">
+            <div class="card-body">
+                {% for sensor_name, data in sensor_data.items %}
+                    <div class="sensor-block">
+                        <h2>{{ sensor_name }}</h2>
+                        {% if data %}
+                        <ul>
+                            {% for entry in data.results %}
+                            <li>Timestamp: {{ entry.timestamp }}</li>
+                            <li>Location: {{ entry.location }}</li>
+                            <!-- Add other sensor data fields here -->
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                        <p>No data available for {{ sensor_name }} sensor</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+        
+    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js'></script>
+    <script src="static/js/bootstrap.min.js"></script>
+</body>
+</html>

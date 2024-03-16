@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sensor Data</title>
+</head>
+<body>
+    <h1>Sensor Data</h1>
+
+    {% for sensor_data in sensor_data_list %}
+    <div class="sensor">
+        <h2>{{ sensor_data.0.sensor_name }}</h2>
+        <ul>
+            {% for data in sensor_data %}
+            <li>
+                <strong>Timestamp:</strong> {{ data.timestamp }}<br>
+                <strong>Sensor Values:</strong>
+                <ul>
+                    {% for value in data.sensor_values %}
+                    <li>ID: {{ value.id }}, Value: {{ value.value }}, Value Type: {{ value.value_type }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</body>
+</html>
